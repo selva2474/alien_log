@@ -145,7 +145,7 @@ Docs, quickstart, integrations (Fluent Bit/Vector/OTel Collector), benchmarks vs
 - [x] P0.2 Pain-point → opportunity mapping (§2)
 - [x] P0.3 Draft positioning / wedge (§2)
 - [ ] P0.4 Confirm positioning with stakeholder (blocking gate)
-- [ ] P0.5 Choose implementation language (candidates: Rust, Go)
+- [x] P0.5 Choose implementation language → **Rust**
 - [ ] P0.6 Choose storage/query engine strategy (build vs embed: DataFusion / DuckDB / Tantivy / Parquet)
 - [ ] P0.7 Decide first interface (TUI vs web vs plain HTTP+curl)
 - [ ] P0.8 Repo skeleton: build tooling, lint, format, CI, test harness
@@ -208,13 +208,16 @@ Docs, quickstart, integrations (Fluent Bit/Vector/OTel Collector), benchmarks vs
 
 ---
 
-## 6. Open Decisions (need answers before Phase 1)
+## 6. Decisions
 
-1. **Positioning** — dev-first zero-ops wedge (recommended) vs ops-at-scale vs SaaS-first?
-2. **Language** — Rust (perf, single binary, matches OpenObserve/Quickwit) vs Go (velocity, ecosystem)?
-3. **Query/storage engine** — build minimal ourselves vs embed DataFusion/DuckDB (SQL) + Tantivy (full-text)?
-4. **First interface** — plain HTTP+CLI (fastest), TUI, or web UI?
-5. **Scope guardrail** — logs only for v1 (recommended), or logs+metrics+traces from the start?
+**Locked:**
+- ✅ **Language: Rust.** Best perf, easy single static binary, matches OpenObserve/Quickwit.
+- ✅ **v1 scope: logs only.** Ship the search wedge well; metrics/traces later.
+
+**Still open (need answers before Phase 1):**
+1. **Positioning** — dev-first zero-ops wedge (recommended) vs ops-at-scale vs SaaS-first. *Pending stakeholder decision.*
+2. **Query/storage engine** — build minimal ourselves vs embed DataFusion/DuckDB (SQL) + Tantivy (full-text)?
+3. **First interface** — plain HTTP+CLI (fastest), TUI, or web UI?
 
 ---
 
