@@ -144,12 +144,12 @@ Docs, quickstart, integrations (Fluent Bit/Vector/OTel Collector), benchmarks vs
 - [x] P0.1 Competitive analysis (this doc §1)
 - [x] P0.2 Pain-point → opportunity mapping (§2)
 - [x] P0.3 Draft positioning / wedge (§2)
-- [ ] P0.4 Confirm positioning with stakeholder (blocking gate)
+- [x] P0.4 Confirm positioning with stakeholder → **dev-first, zero-ops wedge**
 - [x] P0.5 Choose implementation language → **Rust**
-- [ ] P0.6 Choose storage/query engine strategy (build vs embed: DataFusion / DuckDB / Tantivy / Parquet)
-- [ ] P0.7 Decide first interface (TUI vs web vs plain HTTP+curl)
-- [ ] P0.8 Repo skeleton: build tooling, lint, format, CI, test harness
-- [ ] P0.9 Define the internal log record model (fields: ts, level, body, attributes, resource, trace ids)
+- [x] P0.6 Choose storage/query engine strategy → **embed Tantivy + DataFusion**
+- [x] P0.7 Decide first interface → **HTTP ingest + CLI**
+- [x] P0.8 Repo skeleton: Cargo project, fmt + clippy(-D warnings) + test in CI
+- [x] P0.9 Define the internal log record model (`src/record.rs`: ts, severity, body, attributes, resource, trace/span ids)
 - [ ] P0.10 Write ADRs for P0.5–P0.7 decisions
 
 ### Phase 1 — Walking skeleton
@@ -211,13 +211,13 @@ Docs, quickstart, integrations (Fluent Bit/Vector/OTel Collector), benchmarks vs
 ## 6. Decisions
 
 **Locked:**
+- ✅ **Positioning: dev-first, zero-ops wedge.** One binary, great local DX; grow into teams/scale/SaaS later.
 - ✅ **Language: Rust.** Best perf, easy single static binary, matches OpenObserve/Quickwit.
 - ✅ **v1 scope: logs only.** Ship the search wedge well; metrics/traces later.
+- ✅ **Query/storage engine: embed, don't build.** Tantivy (full-text) + DataFusion (SQL over Parquet). Both pure-Rust → single binary preserved.
+- ✅ **First interface: HTTP ingest + CLI.** Fastest to the "download & search in 30s" demo; TUI/web in Phase 4.
 
-**Still open (need answers before Phase 1):**
-1. **Positioning** — dev-first zero-ops wedge (recommended) vs ops-at-scale vs SaaS-first. *Pending stakeholder decision.*
-2. **Query/storage engine** — build minimal ourselves vs embed DataFusion/DuckDB (SQL) + Tantivy (full-text)?
-3. **First interface** — plain HTTP+CLI (fastest), TUI, or web UI?
+All Phase 0 decisions resolved. → Proceed to Phase 1.
 
 ---
 

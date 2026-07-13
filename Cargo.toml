@@ -1,0 +1,22 @@
+[package]
+name = "alien_log"
+version = "0.0.0"
+edition = "2021"
+rust-version = "1.94"
+description = "A developer-first, single-binary log aggregator."
+license = "Apache-2.0"
+repository = "https://github.com/selva2474/alien_log"
+
+[[bin]]
+name = "alien_log"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[dev-dependencies]
+
+[profile.release]
+lto = "thin"
+strip = true
