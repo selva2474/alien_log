@@ -152,14 +152,14 @@ Docs, quickstart, integrations (Fluent Bit/Vector/OTel Collector), benchmarks vs
 - [x] P0.9 Define the internal log record model (`src/record.rs`: ts, severity, body, attributes, resource, trace/span ids)
 - [ ] P0.10 Write ADRs for P0.5–P0.7 decisions
 
-### Phase 1 — Walking skeleton
-- [ ] P1.1 Define ingest wire format for MVP (line-delimited JSON over HTTP POST)
-- [ ] P1.2 HTTP ingest endpoint that accepts and parses a batch
-- [ ] P1.3 In-memory store + append to local WAL/file
-- [ ] P1.4 Basic search endpoint: substring/keyword over a time range
-- [ ] P1.5 `alien_log` CLI: `send` and `search` subcommands
-- [ ] P1.6 End-to-end test: send N lines, search, assert hits
-- [ ] P1.7 Quickstart: "index your first logs in 30s" in README
+### Phase 1 — Walking skeleton ✅
+- [x] P1.1 Ingest wire format: NDJSON, schema-on-read (`src/parse.rs`)
+- [x] P1.2 HTTP ingest endpoint `POST /ingest` (`src/server.rs`)
+- [x] P1.3 In-memory store + append-only WAL with replay (`src/store.rs`)
+- [x] P1.4 Search endpoint `GET /search`: text + level + time-range + limit
+- [x] P1.5 CLI: `serve` / `send` / `search` subcommands (`src/main.rs`, `src/client.rs`)
+- [x] P1.6 End-to-end HTTP test: send N lines, search, assert hits (`tests/e2e.rs`)
+- [x] P1.7 Quickstart: "index your first logs in 30s" in README
 
 ### Phase 2 — Ingestion & storage
 - [ ] P2.1 OTLP/HTTP logs receiver (protobuf/JSON)
